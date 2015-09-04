@@ -1,0 +1,55 @@
+st login: Fri Sep  4 13:49:42 on ttys000
+-bash: rbenv: command not found
+Yokos-MacBook-Air:~ yokoyamaguchi$ cd Documents/
+Yokos-MacBook-Air:Documents yokoyamaguchi$ cd Bloc./
+Yokos-MacBook-Air:Bloc. yokoyamaguchi$ git clone git@github.com:yamag104/Blocstagram.git
+Cloning into 'Blocstagram'...
+remote: Counting objects: 3, done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Receiving objects: 100% (3/3), done.
+Checking connectivity... done.
+Yokos-MacBook-Air:Bloc. yokoyamaguchi$ cd Bloc
+-bash: cd: Bloc: No such file or directory
+Yokos-MacBook-Air:Bloc. yokoyamaguchi$ cd Blocstagram/
+Yokos-MacBook-Air:Blocstagram yokoyamaguchi$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+nothing to commit, working directory clean
+Yokos-MacBook-Air:Blocstagram yokoyamaguchi$ vim .gitignore
+Yokos-MacBook-Air:Blocstagram yokoyamaguchi$ cd ../
+Yokos-MacBook-Air:Bloc. yokoyamaguchi$ cd BlocBrowser/
+Yokos-MacBook-Air:BlocBrowser yokoyamaguchi$ ls -la
+total 16
+drwxr-xr-x   8 yokoyamaguchi  staff  272 Aug 28 20:32 .
+drwxr-xr-x   8 yokoyamaguchi  staff  272 Sep  4 13:50 ..
+drwxr-xr-x  14 yokoyamaguchi  staff  476 Sep  4 13:47 .git
+-rw-r--r--   1 yokoyamaguchi  staff  823 Aug 28 20:32 .gitignore
+drwxr-xr-x  13 yokoyamaguchi  staff  442 Sep  4 13:46 BlocBrowser
+drwxr-xr-x   5 yokoyamaguchi  staff  170 Sep  3 14:39 BlocBrowser.xcodeproj
+drwxr-xr-x   4 yokoyamaguchi  staff  136 Aug 28 20:28 BlocBrowserTests
+-rw-r--r--   1 yokoyamaguchi  staff   14 Aug 28 20:30 README.md
+Yokos-MacBook-Air:BlocBrowser yokoyamaguchi$ vim .gitignore
+
+tignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
+
+## Build generated
+build/
+DerivedData
+
+## Various settings
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+
+## Other
+*.xccheckout
+*.moved-aside
+*.xcuserstate
+*.xcscmblueprint
+".gitignore" 41L, 823C
