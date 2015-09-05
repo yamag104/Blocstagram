@@ -1,12 +1,14 @@
 //
-//  ImagesTableViewController.h
+//  Media.m
 //  Blocstagram
 //
 //  Created by Yoko Yamaguchi on 9/4/15.
 //  Copyright (c) 2015 Yoko Yamaguchi. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "Media.h"
+#import "User.h"
 
-@interface ImagesTableViewController : UITableViewController
+@implementation Media
+
 @end
