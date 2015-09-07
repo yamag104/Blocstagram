@@ -1,19 +1,13 @@
-//
-//  DataSource.m
-//  Blocstagram
-//
-//  Created by Yoko Yamaguchi on 9/4/15.
-//  Copyright (c) 2015 Yoko Yamaguchi. All rights reserved.
-//
-
 #import "DataSource.h"
 #import "User.h"
 #import "Media.h"
 #import "Comment.h"
 
 // this property can only be modified by DataSource instance. READ ONLY
-@interface DataSource ()
-@property (nonatomic, strong) NSArray *mediaItems;
+@interface DataSource () {
+    // KVC (key-value compliant)
+    NSMutableArray *_mediaItems;
+}
 @end
 
 @implementation DataSource
@@ -62,7 +56,7 @@
             [randomMediaItems addObject:media];
         }
     }
-    self.mediaItems = randomMediaItems;
+    _mediaItems = randomMediaItems;
 }
 
 - (User *) randomUser {
@@ -103,6 +97,41 @@
         [s appendFormat:@"%C", c];
     }
     return [NSString stringWithString:s];
+}
+
+#pragma mark - Key/Value Observing
+// Required accessor methods for KVC
+- (NSUInteger) countOfMediaItems {
+    return self.mediaItems.count;
+}
+
+- (id) objectInMediaItemsAtIndex:(NSUInteger)index {
+    return [self.mediaItems objectAtIndex:index];
+}
+
+- (NSArray *) mediaItemsAtIndexes:(NSIndexSet *)indexes {
+    return [self.mediaItems objectsAtIndexes:indexes];
+}
+
+// Mutable Accessor methods, allows insertion and deletion of elements frmo mediaItems
+// Reference array using its instance variable _mediaItems and not its property self.mediaItems
+// in .h mediaItems is declared as readonly but in .m, _mediaItems is mutable
+- (void) insertObject:(Media *)object inMediaItemsAtIndex:(NSUInteger)index {
+    [_mediaItems insertObject:object atIndex:index];
+}
+
+- (void) removeObjectFromMediaItemsAtIndex:(NSUInteger)index {
+    [_mediaItems removeObjectAtIndex:index];
+}
+
+- (void) replaceObjectInMediaItemsAtIndex:(NSUInteger)index withObject:(id)object {
+    [_mediaItems replaceObjectAtIndex:index withObject:object];
+}
+
+#pragma mark - Deletion
+- (void) deleteMediaItem:(Media *)item {
+    NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"mediaItems"];
+    [mutableArrayWithKVO removeObject:item];
 }
 
 @end
