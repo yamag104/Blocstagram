@@ -27,6 +27,7 @@ static UIFont *boldFont;
 static UIColor *usernameLabelGray;
 static UIColor *commentLabelGray;
 static UIColor *linkColor;
+static UIColor *orangeColor;
 // lets us set properties like line spacing, text alignment, indentation, paragraph, spacing
 static NSParagraphStyle *paragraphStyle;
 
@@ -60,6 +61,7 @@ static NSParagraphStyle *paragraphStyle;
     usernameLabelGray = [UIColor colorWithRed:0.933 green:0.933 blue:0.933 alpha:1]; /*#eeeeee*/
     commentLabelGray = [UIColor colorWithRed:0.898 green:0.898 blue:0.898 alpha:1]; /*#e5e5e5*/
     linkColor = [UIColor colorWithRed:0.345 green:0.314 blue:0.427 alpha:1]; /*#58506d*/
+    orangeColor = [UIColor colorWithRed:1 green:0.647 blue:0 alpha:1]; /*ffa500*/
     
     NSMutableParagraphStyle *mutableParagraphStyle = [[NSMutableParagraphStyle alloc] init];
     mutableParagraphStyle.headIndent = 20.0;
@@ -104,7 +106,7 @@ static NSParagraphStyle *paragraphStyle;
 
 - (NSAttributedString *) commentString {
     NSMutableAttributedString *commentString = [[NSMutableAttributedString alloc] init];
-    
+    NSInteger commentNumber = 0;
     for (Comment *comment in self.mediaItem.comments) {
         // Make a string that says "username comment" followed by a line break
         NSString *baseString = [NSString stringWithFormat:@"%@ %@\n", comment.from.userName, comment.text];
@@ -116,7 +118,13 @@ static NSParagraphStyle *paragraphStyle;
         [oneCommentString addAttribute:NSFontAttributeName value:boldFont range:usernameRange];
         [oneCommentString addAttribute:NSForegroundColorAttributeName value:linkColor range:usernameRange];
         
+        // Make the first Comment Orange
+        if (commentNumber == 0) {
+            NSRange fullRange = NSMakeRange(0, [oneCommentString length]);
+            [oneCommentString addAttribute:NSForegroundColorAttributeName value:orangeColor range:fullRange];
+        }
         [commentString appendAttributedString:oneCommentString];
+        commentNumber++;
     }
     return commentString;
 }
