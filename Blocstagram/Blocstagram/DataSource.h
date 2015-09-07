@@ -6,4 +6,5 @@
 // readonly prevents other class from modifying it
 @property (nonatomic, strong, readonly) NSArray *mediaItems;
 - (void) deleteMediaItem:(Media *)item;
+- (void) moveMediaItemToTop:(Media *)item;
 @end
