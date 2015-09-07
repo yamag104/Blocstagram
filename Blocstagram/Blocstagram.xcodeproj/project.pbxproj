@@ -27,6 +27,7 @@
 		FBE6C0551B9A8C2200613207 /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE6C0541B9A8C2200613207 /* Media.m */; };
 		FBE6C0581B9A8CF300613207 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE6C0571B9A8CF300613207 /* Comment.m */; };
 		FBE6C05B1B9A8D6900613207 /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE6C05A1B9A8D6900613207 /* DataSource.m */; };
+		FBE6C0611B9A96BE00613207 /* MediaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE6C0601B9A96BE00613207 /* MediaTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,8 @@
 		FBE6C0571B9A8CF300613207 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		FBE6C0591B9A8D6900613207 /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSource.h; sourceTree = "<group>"; };
 		FBE6C05A1B9A8D6900613207 /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSource.m; sourceTree = "<group>"; };
+		FBE6C05F1B9A96BE00613207 /* MediaTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaTableViewCell.h; sourceTree = "<group>"; };
+		FBE6C0601B9A96BE00613207 /* MediaTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +119,8 @@
 				FBE6C0171B9A3C4500613207 /* AppDelegate.m */,
 				FBE6C04D1B9A43E600613207 /* ImagesTableViewController.h */,
 				FBE6C04E1B9A43E600613207 /* ImagesTableViewController.m */,
+				FBE6C05F1B9A96BE00613207 /* MediaTableViewCell.h */,
+				FBE6C0601B9A96BE00613207 /* MediaTableViewCell.m */,
 				FBE6C0501B9A8BA800613207 /* User.h */,
 				FBE6C0511B9A8BA800613207 /* User.m */,
 				FBE6C0531B9A8C2200613207 /* Media.h */,
@@ -285,6 +290,7 @@
 			files = (
 				FBE6C0521B9A8BA800613207 /* User.m in Sources */,
 				FBE6C0581B9A8CF300613207 /* Comment.m in Sources */,
+				FBE6C0611B9A96BE00613207 /* MediaTableViewCell.m in Sources */,
 				FBE6C0551B9A8C2200613207 /* Media.m in Sources */,
 				FBE6C0181B9A3C4500613207 /* AppDelegate.m in Sources */,
 				FBE6C05B1B9A8D6900613207 /* DataSource.m in Sources */,

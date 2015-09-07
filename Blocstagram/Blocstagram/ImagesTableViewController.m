@@ -3,6 +3,7 @@
 #import "Media.h"
 #import "User.h"
 #import "Comment.h"
+#import "MediaTableViewCell.h"
 
 @interface ImagesTableViewController ()
 @end
@@ -21,7 +22,7 @@
 {
     [super viewDidLoad];
     // Register Table View Cells
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"imageCell"];
+    [self.tableView registerClass:[MediaTableViewCell class] forCellReuseIdentifier:@"mediaCell"];
 }
 
 #pragma mark - Table view data source
@@ -33,35 +34,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // dequeue will eithe return a brand new cell or a used one that's no longer visible on screen (cells are recycled)
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"imageCell" forIndexPath:indexPath];
-    // arbitrary but consistent number
-    static NSInteger imageViewTag = 1234;
-    UIImageView *imageView = (UIImageView *)[cell.contentView viewWithTag:imageViewTag];
-    
-    // Error handling if viewWithTag: fails to recover a UIImageView
-    if (!imageView) {
-        // This is a new cell, it doesn't have an image view yet
-        imageView = [[UIImageView alloc]init];
-        // imageView will be stretched both horizontally and vertically to fill the bounds
-        imageView.contentMode = UIViewContentModeScaleToFill;
-        
-        imageView.frame = cell.contentView.bounds;
-        imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        
-        imageView.tag = imageViewTag;
-        [cell.contentView addSubview:imageView];
-    }
-    
-    Media *item = [self items][indexPath.row];
-    imageView.image = item.image;
-    
+    MediaTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mediaCell" forIndexPath:indexPath];
+    cell.mediaItem = [DataSource sharedInstance].mediaItems[indexPath.row];
     return cell;
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     Media *item = [self items][indexPath.row];
-    UIImage *image = item.image;
-    return (CGRectGetWidth(self.view.frame)/image.size.width) * image.size.height;
+    return [MediaTableViewCell heightForMediaItem:item width:CGRectGetWidth(self.view.frame)];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
