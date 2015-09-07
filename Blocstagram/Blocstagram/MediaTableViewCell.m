@@ -30,6 +30,7 @@ static UIColor *linkColor;
 static UIColor *orangeColor;
 // lets us set properties like line spacing, text alignment, indentation, paragraph, spacing
 static NSParagraphStyle *paragraphStyle;
+static NSParagraphStyle *rightAlignedParagraphStyle;
 
 @implementation MediaTableViewCell
 
@@ -62,14 +63,20 @@ static NSParagraphStyle *paragraphStyle;
     commentLabelGray = [UIColor colorWithRed:0.898 green:0.898 blue:0.898 alpha:1]; /*#e5e5e5*/
     linkColor = [UIColor colorWithRed:0.345 green:0.314 blue:0.427 alpha:1]; /*#58506d*/
     orangeColor = [UIColor colorWithRed:1 green:0.647 blue:0 alpha:1]; /*ffa500*/
-    
+
     NSMutableParagraphStyle *mutableParagraphStyle = [[NSMutableParagraphStyle alloc] init];
     mutableParagraphStyle.headIndent = 20.0;
     mutableParagraphStyle.firstLineHeadIndent = 20.0;
     mutableParagraphStyle.tailIndent = -20.0;
     mutableParagraphStyle.paragraphSpacingBefore = 5;
-    
     paragraphStyle = mutableParagraphStyle;
+    NSMutableParagraphStyle *mutableRightAlignParagraphStyle = [[NSMutableParagraphStyle alloc] init];
+    mutableRightAlignParagraphStyle.headIndent = 20.0;
+    mutableRightAlignParagraphStyle.firstLineHeadIndent = 20.0;
+    mutableRightAlignParagraphStyle.tailIndent = -20.0;
+    mutableRightAlignParagraphStyle.paragraphSpacingBefore = 5;
+    mutableRightAlignParagraphStyle.alignment = NSTextAlignmentRight;
+    rightAlignedParagraphStyle = mutableRightAlignParagraphStyle;
 }
 
 - (void) layoutSubviews {
@@ -111,9 +118,16 @@ static NSParagraphStyle *paragraphStyle;
     for (Comment *comment in self.mediaItem.comments) {
         // Make a string that says "username comment" followed by a line break
         NSString *baseString = [NSString stringWithFormat:@"%@ %@\n", comment.from.userName, comment.text];
+        NSMutableAttributedString *oneCommentString;
         
-        // Make an attributed string, with the username bold
-        NSMutableAttributedString *oneCommentString = [[NSMutableAttributedString alloc] initWithString:baseString attributes:@{NSFontAttributeName : lightFont, NSParagraphStyleAttributeName : paragraphStyle}];
+        // If comment number is odd
+        if (commentNumber%2 == 1) {
+            oneCommentString = [[NSMutableAttributedString alloc] initWithString:baseString attributes:@{NSFontAttributeName : lightFont, NSParagraphStyleAttributeName : rightAlignedParagraphStyle}];
+        }
+        else {
+            // Make an attributed string, with the username bold
+            oneCommentString = [[NSMutableAttributedString alloc] initWithString:baseString attributes:@{NSFontAttributeName : lightFont, NSParagraphStyleAttributeName : paragraphStyle}];
+        }
         
         NSRange usernameRange = [baseString rangeOfString:comment.from.userName];
         [oneCommentString addAttribute:NSFontAttributeName value:boldFont range:usernameRange];
