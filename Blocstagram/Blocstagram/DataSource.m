@@ -8,6 +8,8 @@
     // KVC (key-value compliant)
     NSMutableArray *_mediaItems;
 }
+@property (nonatomic, strong) NSArray *mediaItems;
+@property (nonatomic, assign) BOOL isRefreshing;
 @end
 
 @implementation DataSource
@@ -138,5 +140,7 @@
     NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"mediaItems"];
     [mutableArrayWithKVO insertObject:item atIndex:0];
 }
+
+#pragma <#arguments#>
 
 @end
