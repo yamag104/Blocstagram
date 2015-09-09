@@ -118,4 +118,19 @@
     }];
 }
 
+- (void) infiniteScrollIfNecessary {
+    // Check whether user has scrolled to the last photo
+    NSIndexPath *bottomIndexPath = [[self.tableView indexPathsForVisibleRows] lastObject];
+    
+    if (bottomIndexPath && bottomIndexPath.row == [DataSource sharedInstance].mediaItems.count-1) {
+        [[DataSource sharedInstance] requestOldItemsWithCompletionHandler:nil];
+    }
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self infiniteScrollIfNecessary];
+}
+
 @end
