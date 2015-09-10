@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB8686891BA1046C00FFB837 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB8686881BA1046C00FFB837 /* LoginViewController.m */; };
 		FBE6C0151B9A3C4500613207 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE6C0141B9A3C4500613207 /* main.m */; };
 		FBE6C0181B9A3C4500613207 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE6C0171B9A3C4500613207 /* AppDelegate.m */; };
 		FBE6C0201B9A3C4500613207 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBE6C01F1B9A3C4500613207 /* Images.xcassets */; };
@@ -41,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FB8686871BA1046C00FFB837 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		FB8686881BA1046C00FFB837 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		FBE6C00F1B9A3C4500613207 /* Blocstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blocstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBE6C0131B9A3C4500613207 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FBE6C0141B9A3C4500613207 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -129,6 +132,8 @@
 				FBE6C0571B9A8CF300613207 /* Comment.m */,
 				FBE6C0591B9A8D6900613207 /* DataSource.h */,
 				FBE6C05A1B9A8D6900613207 /* DataSource.m */,
+				FB8686871BA1046C00FFB837 /* LoginViewController.h */,
+				FB8686881BA1046C00FFB837 /* LoginViewController.m */,
 				FBE6C01F1B9A3C4500613207 /* Images.xcassets */,
 				FBE6C0211B9A3C4500613207 /* LaunchScreen.xib */,
 				FBE6C0121B9A3C4500613207 /* Supporting Files */,
@@ -293,6 +298,7 @@
 				FBE6C0611B9A96BE00613207 /* MediaTableViewCell.m in Sources */,
 				FBE6C0551B9A8C2200613207 /* Media.m in Sources */,
 				FBE6C0181B9A3C4500613207 /* AppDelegate.m in Sources */,
+				FB8686891BA1046C00FFB837 /* LoginViewController.m in Sources */,
 				FBE6C05B1B9A8D6900613207 /* DataSource.m in Sources */,
 				FBE6C0151B9A3C4500613207 /* main.m in Sources */,
 				FBE6C04F1B9A43E600613207 /* ImagesTableViewController.m in Sources */,
