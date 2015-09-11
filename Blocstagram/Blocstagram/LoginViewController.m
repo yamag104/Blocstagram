@@ -39,6 +39,11 @@ NSString *const LoginViewControllerDidGetAccessTokenNotification = @"LoginViewCo
 }
 
 
+- (void) webViewDidFinishLoad:(UIWebView *)webView{
+    [self.navigationItem.leftBarButtonItem setEnabled:[self.webView canGoBack]];
+}
+
+
 - (void) viewWillLayoutSubviews {
     self.webView.frame = self.view.bounds;
 }
