@@ -27,13 +27,15 @@ NSString *const LoginViewControllerDidGetAccessTokenNotification = @"LoginViewCo
         [self.webView loadRequest:request];
     }
     
-    // Navigation Bar & Back Button
-    UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 41)];
-//    navBar.delegate = self;
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style: UIBarButtonItemStylePlain target:self action:@selector(Back)];
+    self.navigationItem.leftBarButtonItem = backButton;
+    [self.navigationItem setBackBarButtonItem:backButton];
     
-    UINavigationItem *backItem = [[UINavigationItem alloc] initWithTitle:@"Back"];
-    [navBar pushNavigationItem:backItem animated:NO];
-    [self.view addSubview:navBar];
+}
+
+- (IBAction)Back
+{
+    [self.webView goBack];
 }
 
 
