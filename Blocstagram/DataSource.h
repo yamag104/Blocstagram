@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import <UICKeyChainStore.h>
 
 @class Media;
 typedef void (^NewItemCompletionBlock)(NSError *error);

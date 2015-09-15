@@ -3,6 +3,7 @@
 #import "Media.h"
 #import "Comment.h"
 #import "LoginViewController.h"
+#import <UICKeyChainStore.h>
 
 // this property can only be modified by DataSource instance. READ ONLY
 @interface DataSource () {
@@ -44,7 +45,7 @@
 - (void) registerForAccessTokenNotification {
     [[NSNotificationCenter defaultCenter] addObserverForName:LoginViewControllerDidGetAccessTokenNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
         self.accessToken = note.object;
-        
+        [UICKeyChainStore setString:self.accessToken forKey:@"access token"];
         // Got a token; populate the initial data
         [self populateDataWithParameters:nil completionHandler:nil];
     }];
