@@ -50,6 +50,12 @@
                     if (storedMediaItems.count > 0) {
                         NSMutableArray *mutableMediaItems = [storedMediaItems mutableCopy];
                         
+                        [self requestNewItemsWithCompletionHandler:^(NSError *error) {
+                            if (error) {
+                                NSLog(@"unable to load items: %@", error);
+                            }
+                        }];
+                        
                         [self willChangeValueForKey:@"mediaItems"];
                         self.mediaItems = mutableMediaItems;
                         [self didChangeValueForKey:@"mediaItems"];
