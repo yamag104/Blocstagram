@@ -25,6 +25,7 @@ NSString *const LoginViewControllerDidGetAccessTokenNotification = @"LoginViewCo
     if (url) {
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         [self.webView loadRequest:request];
+        NSLog(@"Here");
     }
     
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style: UIBarButtonItemStylePlain target:self action:@selector(Back)];

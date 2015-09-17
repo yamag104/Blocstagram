@@ -61,7 +61,7 @@
                     } else {
                         [self populateDataWithParameters:nil completionHandler:nil];
                     }
-                })
+                });
             });
         }
     }
