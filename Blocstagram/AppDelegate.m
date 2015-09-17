@@ -24,13 +24,19 @@
     [DataSource sharedInstance]; // create the data source (so it can receive the access token notification)
     
     UINavigationController *navVC = [[UINavigationController alloc] init];
-    LoginViewController *loginVC = [[LoginViewController alloc] init];
-    [navVC setViewControllers:@[loginVC] animated:YES];
     
-    [[NSNotificationCenter defaultCenter] addObserverForName:LoginViewControllerDidGetAccessTokenNotification object:nil queue:nil usingBlock:^(NSNotification *note){
-        ImagesTableViewController *imagesVC = [[ImagesTableViewController alloc] init];
-        [navVC setViewControllers:@[imagesVC] animated:YES];
-    }];
+    if (![DataSource sharedInstance].accessToken) {
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        [navVC setViewControllers:@[loginVC] animated:YES];
+        
+        [[NSNotificationCenter defaultCenter] addObserverForName:LoginViewControllerDidGetAccessTokenNotification object:nil queue:nil usingBlock:^(NSNotification *note){
+            ImagesTableViewController *imagesVC = [[ImagesTableViewController alloc] init];
+            [navVC setViewControllers:@[imagesVC] animated:YES];
+        }];
+    } else {
+        ImagesTableViewController *imageVC = [[ImagesTableViewController alloc] init];
+        [navVC setViewControllers:@[imageVC] animated:YES];
+    }
     
     self.window.rootViewController = navVC;
     
