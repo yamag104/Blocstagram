@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CBEDA6993A3938E155F2B8E8 /* libPods-Blocstagram.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE41B07668E36156BBBD4CCE /* libPods-Blocstagram.a */; };
+		FB414FE51BAB8B14002D1F7E /* MediaFullScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB414FE41BAB8B14002D1F7E /* MediaFullScreenViewController.m */; settings = {ASSET_TAGS = (); }; };
 		FB8686891BA1046C00FFB837 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB8686881BA1046C00FFB837 /* LoginViewController.m */; };
 		FBE6C0151B9A3C4500613207 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE6C0141B9A3C4500613207 /* main.m */; };
 		FBE6C0181B9A3C4500613207 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE6C0171B9A3C4500613207 /* AppDelegate.m */; };
@@ -46,6 +47,8 @@
 		2CBE289E5348311846CBCE2A /* Pods-Blocstagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Blocstagram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Blocstagram/Pods-Blocstagram.debug.xcconfig"; sourceTree = "<group>"; };
 		708D6A4B208F6649DA8A5808 /* Pods-Blocstagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Blocstagram.release.xcconfig"; path = "Pods/Target Support Files/Pods-Blocstagram/Pods-Blocstagram.release.xcconfig"; sourceTree = "<group>"; };
 		DE41B07668E36156BBBD4CCE /* libPods-Blocstagram.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Blocstagram.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB414FE31BAB8B14002D1F7E /* MediaFullScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaFullScreenViewController.h; sourceTree = "<group>"; };
+		FB414FE41BAB8B14002D1F7E /* MediaFullScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaFullScreenViewController.m; sourceTree = "<group>"; };
 		FB8686871BA1046C00FFB837 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		FB8686881BA1046C00FFB837 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		FBE6C00F1B9A3C4500613207 /* Blocstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Blocstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,6 +147,8 @@
 				FBE6C0381B9A431200613207 /* Images */,
 				FBE6C0161B9A3C4500613207 /* AppDelegate.h */,
 				FBE6C0171B9A3C4500613207 /* AppDelegate.m */,
+				FB414FE31BAB8B14002D1F7E /* MediaFullScreenViewController.h */,
+				FB414FE41BAB8B14002D1F7E /* MediaFullScreenViewController.m */,
 				FBE6C04D1B9A43E600613207 /* ImagesTableViewController.h */,
 				FBE6C04E1B9A43E600613207 /* ImagesTableViewController.m */,
 				FBE6C05F1B9A96BE00613207 /* MediaTableViewCell.h */,
@@ -352,6 +357,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB414FE51BAB8B14002D1F7E /* MediaFullScreenViewController.m in Sources */,
 				FBE6C0521B9A8BA800613207 /* User.m in Sources */,
 				FBE6C0581B9A8CF300613207 /* Comment.m in Sources */,
 				FBE6C0611B9A96BE00613207 /* MediaTableViewCell.m in Sources */,
