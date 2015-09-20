@@ -153,7 +153,6 @@
         [self.scrollView setZoomScale:self.scrollView.minimumZoomScale animated:YES];
     }
 }
-
 - (void) share {
     NSMutableArray *itemsToShare = [NSMutableArray array];
     

@@ -11,6 +11,7 @@
 #import "Media.h"
 #import "Comment.h"
 #import "User.h"
+#import "DataSource.h"
 
 @interface MediaTableViewCell ()<UIGestureRecognizerDelegate>{
     Media* _mediaItem;
@@ -25,6 +26,7 @@
 @property (nonatomic, strong) NSLayoutConstraint *commentLabelHeightConstraint;
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
 @property (nonatomic, strong) UILongPressGestureRecognizer *longPressGestureRecognizer;
+@property (nonatomic, strong) UITapGestureRecognizer *doubleFingerGestureRecognizer;
 @end
 
 static UIFont *lightFont;
@@ -54,6 +56,10 @@ static NSParagraphStyle *rightAlignedParagraphStyle;
         self.longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressFired:)];
         self.longPressGestureRecognizer.delegate = self;
         [self.mediaImageView addGestureRecognizer:self.longPressGestureRecognizer];
+        
+        self.doubleFingerGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleFingerFired:)];
+        self.doubleFingerGestureRecognizer.numberOfTouchesRequired = 2;
+        [self.mediaImageView addGestureRecognizer:self.doubleFingerGestureRecognizer];
         
         self.usernameAndCaptionLabel = [[UILabel alloc] init];
         self.usernameAndCaptionLabel.numberOfLines = 0;
@@ -256,10 +262,18 @@ static NSParagraphStyle *rightAlignedParagraphStyle;
     }
 }
 
+- (void) doubleFingerFired:(UIGestureRecognizer *)sender {
+    [self.delegate cell:self didDoubleTapMedia:self.mediaItem];
+}
+
 #pragma mark - UIGestureRecognizerDelegate
 
 - (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     return self.isEditing == NO;
+}
+
+- (void) cell:(MediaTableViewCell *)cell didDoubleTapMedia:(Media *)mediaItem {
+    [[DataSource sharedInstance] downloadImageForMediaItem:mediaItem];
 }
 
 @end
