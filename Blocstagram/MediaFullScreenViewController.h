@@ -15,8 +15,12 @@
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIImageView *imageView;
 
-- (instancetype) initwithMedia:(Media *)media;
+- (instancetype) initWithMedia:(Media *)media;
 
+/*
+ This method will center the image on the appropriate axis if the image is zoomed out so it doesn't fill the full scroll view.
+ i.e. equal blank space on the top and bottom when zoomed.
+ */
 - (void) centerScrollView;
 
 @end

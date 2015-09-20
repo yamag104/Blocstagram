@@ -13,7 +13,7 @@
 @protocol MediaTableViewCellDelegate <NSObject>
 
 - (void) cell:(MediaTableViewCell *)cell didTapImageView:(UIImageView *)imageView;
-
+- (void) cell:(MediaTableViewCell *)cell didLongPressImageView:(UIImageView *)imageView;
 @end
 
 @interface MediaTableViewCell : UITableViewCell

@@ -12,12 +12,14 @@
 @interface MediaFullScreenViewController () <UIScrollViewDelegate>
 
 @property (nonatomic, strong) Media *media;
+@property (nonatomic, strong) UITapGestureRecognizer *tap;
+@property (nonatomic, strong) UITapGestureRecognizer *doubleTap;
 
 @end
 
 @implementation MediaFullScreenViewController
 
-- (instancetype) initwithMedia:(Media *)media {
+- (instancetype) initWithMedia:(Media *)media {
     self = [super init];
     
     if (self) {
@@ -26,5 +28,122 @@
     
     return self;
 }
+
+- (void) viewDidLoad {
+    [super viewDidLoad];
+    
+    // Configure a scroll view
+    self.scrollView = [UIScrollView new];
+    self.scrollView.delegate = self;
+    self.scrollView.backgroundColor = [UIColor whiteColor];
+    
+    [self.view addSubview:self.scrollView];
+    
+    // Configure an Image view
+    self.imageView = [UIImageView new];
+    self.imageView.image = self.media.image;
+    
+    [self.scrollView addSubview:self.imageView];
+    
+    // contentSize: size of the content view
+    self.scrollView.contentSize = self.media.image.size;
+    
+    self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapFired:)];
+    
+    self.doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTapFired:)];
+    self.doubleTap.numberOfTapsRequired = 2;
+    
+    /* Allows one gesture recognizer to wait for another gesture recognizer to fail before it succeeds. Without this line, it would be impossible to double-tap because single tap gesture recognizer would fire before the user had a change to tap twice. */
+    [self.tap requireGestureRecognizerToFail:self.doubleTap];
+    
+    [self.scrollView addGestureRecognizer:self.tap];
+    [self.scrollView addGestureRecognizer:self.doubleTap];
+}
+
+- (void) viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    // Make the scroll view always take up all of the view's space
+    self.scrollView.frame = self.view.bounds;
+    
+    // Ratio of the scroll view's width&&height to the image's width&&height
+    CGSize scrollViewFrameSize = self.scrollView.frame.size;
+    CGSize scrollViewContentSize = self.scrollView.contentSize;
+    
+    CGFloat scaleWidth = scrollViewFrameSize.width / scrollViewContentSize.width;
+    CGFloat scaleHeight = scrollViewFrameSize.height / scrollViewContentSize.height;
+    CGFloat minScale = MIN(scaleWidth, scaleHeight);
+    
+    // smaller one will become our |minimumzoomScale|
+    // prevents user from pinching the image so small that there's wasted screen space
+    self.scrollView.minimumZoomScale = minScale;
+    // 100%
+    self.scrollView.maximumZoomScale = 1;
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self centerScrollView];
+}
+
+- (void) centerScrollView {
+    [self.imageView sizeToFit];
+    
+    CGSize boundsSize = self.scrollView.bounds.size;
+    CGRect contentsFrame = self.imageView.frame;
+    
+    if (contentsFrame.size.width < boundsSize.width) {
+        contentsFrame.origin.x = (boundsSize.width - CGRectGetWidth(contentsFrame)) / 2;
+    } else {
+        contentsFrame.origin.x = 0;
+    }
+    
+    if (contentsFrame.size.height < boundsSize.height) {
+        contentsFrame.origin.y = (boundsSize.height - CGRectGetHeight(contentsFrame)) / 2;
+    } else {
+        contentsFrame.origin.y = 0;
+    }
+    
+    self.imageView.frame = contentsFrame;
+}
+
+#pragma mark - UIScrollViewDelegate
+
+// Tells the scroll view which view to zoom in
+- (UIView*)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+    return self.imageView;
+}
+
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView {
+    [self centerScrollView];
+}
+
+#pragma mark - Gesture Recognizers
+
+// Single Tap: dissmiss the view controller
+- (void) tapFired:(UITapGestureRecognizer *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+// Double Taps: adjust the zoom level
+- (void) doubleTapFired:(UITapGestureRecognizer *)sender {
+    if (self.scrollView.zoomScale == self.scrollView.minimumZoomScale) {
+        /* If the current zoom scale is already as small as it can be, double tapping will zoom in */
+        CGPoint locationPoint = [sender locationInView:self.imageView];
+        CGSize scrollViewSize = self.scrollView.bounds.size;
+        
+        CGFloat width = scrollViewSize.width / self.scrollView.maximumZoomScale;
+        CGFloat height = scrollViewSize.height / self.scrollView.maximumZoomScale;
+        CGFloat x = locationPoint.x - (width / 2);
+        CGFloat y = locationPoint.y - (height / 2);
+        
+        [self.scrollView zoomToRect:CGRectMake(x, y, width, height) animated:YES];
+    } else {
+        /* If the current zoom scale is larger, then zoom out to the minimum scale */
+        [self.scrollView setZoomScale:self.scrollView.minimumZoomScale animated:YES];
+    }
+}
+
+
 
 @end
