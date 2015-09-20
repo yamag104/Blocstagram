@@ -3,6 +3,7 @@
 
 target 'Blocstagram' do
   pod 'UICKeyChainStore', '~> 2.0'
+  pod 'AFNetworking'
 end
 
 target 'BlocstagramTests' do
