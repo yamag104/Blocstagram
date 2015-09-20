@@ -151,6 +151,10 @@
     [self infiniteScrollIfNecessary];
 }
 
+- (void) scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
+    
+}
+
 #pragma mark - MediaTableViewCellDelegate
 
 - (void) cell:(MediaTableViewCell *)cell didTapImageView:(UIImageView *)imageView {
