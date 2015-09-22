@@ -167,4 +167,9 @@
         [self presentViewController:activityVC animated:YES completion:nil];
     }
 }
+
+- (void) cell:(MediaTableViewCell *)cell didDoubleTapMedia:(Media *)mediaItem {
+    [[DataSource sharedInstance] downloadImageForMediaItem:mediaItem];
+}
+
 @end

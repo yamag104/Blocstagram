@@ -162,7 +162,7 @@ static NSParagraphStyle *rightAlignedParagraphStyle;
     if (self.mediaItem.image.size.width > 0 && CGRectGetWidth(self.contentView.bounds) > 0) {
         self.imageHeightConstraint.constant = self.mediaItem.image.size.height / self.mediaItem.image.size.width *CGRectGetWidth(self.contentView.bounds);
     } else {
-        self.imageHeightConstraint.constant = 0;
+        self.imageHeightConstraint.constant = CGRectGetWidth(self.contentView.bounds);
     }
     
     // Hide the line between cells
@@ -270,10 +270,6 @@ static NSParagraphStyle *rightAlignedParagraphStyle;
 
 - (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     return self.isEditing == NO;
-}
-
-- (void) cell:(MediaTableViewCell *)cell didDoubleTapMedia:(Media *)mediaItem {
-    [[DataSource sharedInstance] downloadImageForMediaItem:mediaItem];
 }
 
 @end

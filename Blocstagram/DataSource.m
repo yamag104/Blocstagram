@@ -259,6 +259,8 @@
                                      if ([responseObject isKindOfClass:[UIImage class]]) {
                                          mediaItem.image = responseObject;
                                          NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"mediaItems"];
+                                         NSUInteger index = [mutableArrayWithKVO indexOfObject:mediaItem];
+                                        [mutableArrayWithKVO replaceObjectAtIndex:index withObject:mediaItem];
                                      }
                                      [self saveImages];
                                  }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
