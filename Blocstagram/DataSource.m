@@ -313,4 +313,21 @@
     return dataPath;
 }
 
+- (void) share: (Media*) media withViewController: (UIViewController*) vc {
+    NSMutableArray *itemsToShare = [NSMutableArray array];
+    
+    if (media.caption.length > 0) {
+        [itemsToShare addObject:media.caption];
+    }
+    
+    if (media.image) {
+        [itemsToShare addObject:media.image];
+    }
+    
+    if (itemsToShare.count > 0) {
+        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
+        [vc presentViewController:activityVC animated:YES completion:nil];
+    }
+}
+
 @end
