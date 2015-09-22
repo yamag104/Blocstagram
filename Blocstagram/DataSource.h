@@ -2,7 +2,9 @@
 #import <UICKeyChainStore.h>
 
 @class Media;
+@class UIViewController;
 typedef void (^NewItemCompletionBlock)(NSError *error);
+
 @interface DataSource : NSObject
 +(instancetype) sharedInstance;
 +(NSString *) instagramClientID;
@@ -15,4 +17,6 @@ typedef void (^NewItemCompletionBlock)(NSError *error);
 - (void) requestNewItemsWithCompletionHandler:(NewItemCompletionBlock)completionHandler;
 - (void) requestOldItemsWithCompletionHandler:(NewItemCompletionBlock)completionHandler;
 - (void) downloadImageForMediaItem:(Media *)mediaItem;
+
+- (void) share:(Media*) media withViewController:(UIViewController *) vc;
 @end
